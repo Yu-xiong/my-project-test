@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <classPathEntry
+            location="D:\maven-jar\repository\mysql\mysql-connector-java\8.0.19\mysql-connector-java-8.0.19.jar" />
+    <context id="MysqlTables" targetRuntime="MyBatis3">
+
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="autoDelimitKeywords" value="true"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="mergeable" value="false"/>
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化xml代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"></plugin>
+        <!-- mysql分页插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.LimitPlugin">
+            <property name="startPage" value="0"/>
+        </plugin>
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectOneByExamplePlugin"></plugin>
+        <plugin type="com.itfsw.mybatis.generator.plugins.LombokPlugin">
+            <property name="@Date" value="true"/>
+            <property name="@Builder" value="true"/>
+            <property name="@NoArgsConstructor" value="true"/>
+            <property name="@AllArgsConstructor" value="true"/>
+        </plugin>
+        <plugin type="com.itfsw.mybatis.generator.plugins.ModelColumnPlugin"></plugin>
+        <plugin type="com.itfsw.mybatis.generator.plugins.BatchInsertPlugin">
+            <property name="allowMultiQueries" value="false"/>
+        </plugin>
+
+
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/my_project?tinyInt1isBit=true"
+                        userId="root" password="root">
+            <property name="remarks" value="true"/>
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+            <property name="useJSR310Types" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 模型的包名和位置 -->
+        <javaModelGenerator targetPackage="com.example.myprojecttest.dao.po"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="" value=""/>
+        </javaModelGenerator>
+
+        <!-- 映射文件的包名和位置 -->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.myprojecttest.dao.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackges" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="info" domainObjectName="info">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="create_time" typeHandler="com.example.myprojecttest.dao.typehandle.DateTimeHandler" javaType="java.time.LocalDateTime"/>
+            <columnOverride column="update_time" typeHandler="com.example.myprojecttest.dao.typehandle.DateTimeHandler" javaType="java.time.LocalDateTime"/>
+        </table>
+    </context>
+</generatorConfiguration>

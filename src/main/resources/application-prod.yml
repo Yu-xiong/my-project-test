@@ -7,7 +7,7 @@ logging:
 
 spring:
   profiles:
-    active: dev
+    active: prod
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://mysql:3306/my_project?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Hongkong
