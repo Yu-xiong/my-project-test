@@ -1,0 +1,36 @@
+logging:
+  file:
+    path: ./logs
+  pattern:
+    console: '[%4level][%d{yyyy-MM-dd HH:mm:ss SSS}][%thread][%logger{35}:%line] %msg%n'
+    file: '[%4level][%d{yyyy-MM-dd HH:mm:ss SSS}][%thread][%logger{35}:%line] %msg%n'
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.44.42:3306/my_project?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Hongkong
+    username: root
+    password: 19960726
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    database: 0 #redis索引0-15，默认为0
+    host: 192.168.44.42
+    port: 6379
+    password: 19960726
+    timeout: 5000
+    lettuce:
+      pool:
+        max-active: 1000
+        max-wait: 15000
+        max-idle: 50
+        min-idle: 5
+
+thread:
+  pool:
+    corePoolSize: 20
+    maxPoolSize: 100
+    queueCapacity: 0
+    keepAliveSeconds: 60
+    awaitTerminationSeconds: 60

@@ -1,1 +1,35 @@
+spring:
+  profiles:
+    active: @activatedProperties@
+  application:
+    name: my-project-test
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 500MB
+  mvc:
+    servlet:
+      load-on-startup: 1
 
+server:
+  port: 8080
+  servlet:
+    context-path: /myprojecttest
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 600
+    accept-count: 2000
+    max-connections: 1000
+
+pagehelper:
+  reasonable: false
+  support-methods-arguments: true
+  params: count=countSql
+  row-bounds-with-count: true
+  dialect: mysql
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-handlers-package: com.example.myprojecttest.dao.typehandle
